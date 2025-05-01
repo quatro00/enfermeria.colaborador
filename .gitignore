@@ -1,3 +1,49 @@
+# Node.js
+node_modules/
+
+# Ionic build artifacts
+www/
+
+# Cordova / Capacitor build directories
+platforms/
+plugins/
+capacitor.config.ts
+
+# Angular build artifacts
+dist/
+
+# Temporary files
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directory created by npm
+package-lock.json
+
+# Ionic/Angular configuration
+angular.json
+
+.angular/
+
+# IDEs
+.idea/
+.vscode/
+
 # Logs
 logs
 *.log

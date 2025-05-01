@@ -1,0 +1,7 @@
+{
+  "name": "enfermeria.colaborador",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
