@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Pagos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Filtro de estado -->
+  <ion-segment value="todos">
+    <ion-segment-button value="todos">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pendientes">
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pagados">
+      <ion-label>Pagados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Pago 1: Pendiente -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Servicio #1534</ion-card-title>
+      <ion-chip color="warning" slot="end">Pendiente</ion-chip>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Fecha del servicio:</strong> 3 mayo 2025</p>
+      <p><strong>Turno:</strong> 7:00am – 3:00pm</p>
+      <p><strong>Paciente:</strong> José Martínez</p>
+      <p><strong>Total a pagar:</strong> $800 MXN</p>
+      <ion-button expand="block" fill="outline" color="medium" size="small" disabled>En revisión</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Pago 2: Pagado -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Servicio #1527</ion-card-title>
+      <ion-chip color="success" slot="end">Pagado</ion-chip>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Fecha del servicio:</strong> 1 mayo 2025</p>
+      <p><strong>Turno:</strong> 3:00pm – 11:00pm</p>
+      <p><strong>Paciente:</strong> María López</p>
+      <p><strong>Monto pagado:</strong> $950 MXN</p>
+      <p><strong>Fecha de pago:</strong> 2 mayo 2025</p>
+      <ion-button expand="block" fill="outline" color="primary" size="small">Ver comprobante</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Pago 3: Pagado -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Servicio #1519</ion-card-title>
+      <ion-chip color="success" slot="end">Pagado</ion-chip>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Fecha del servicio:</strong> 28 abril 2025</p>
+      <p><strong>Turno:</strong> 11:00pm – 7:00am</p>
+      <p><strong>Paciente:</strong> Luis Torres</p>
+      <p><strong>Monto pagado:</strong> $1,100 MXN</p>
+      <p><strong>Fecha de pago:</strong> 30 abril 2025</p>
+      <ion-button expand="block" fill="outline" color="primary" size="small">Ver comprobante</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

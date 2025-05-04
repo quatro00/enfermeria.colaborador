@@ -1,0 +1,30 @@
+<!-- <ion-header [translucent]="false" style="box-shadow: none">
+  <ion-toolbar color="bg" style="padding: 5px 15px;--border-width: 0 0;">
+   
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" class="ion-padding" style="background-color: var(--ion-color-bg);">
+  
+  <ion-img [src]="darkMode? '../../../../assets/image/logod.png' : '../../../../assets/image/Logo.png' " style="height: 65px;width: 100%;margin-top: 40px;"></ion-img>
+  <div class="ion-text-center" style="margin-top: 5px;">
+    <ion-text class="title" style="color: var(--ion-color-p1);">Enfermeria MC</ion-text>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <ion-text class="s32" >Recuperar contraseña</ion-text>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <ion-text class="s15" >Correo electronico</ion-text>
+  </div>
+  <div class="input" style="margin-top: 7px" >
+    <ion-input type="text" placeholder="Correo electronico" style="margin-left: 5px;flex:1"></ion-input>
+  </div>
+  <ion-button routerLink="/tabs" expand="block" style="margin-top: 20px;margin-bottom: 20px;">Enviar</ion-button>
+  
+  <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
+    <ion-text (click)="goBack()" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Regresar</ion-text>
+  </div>
+
+</ion-content>
