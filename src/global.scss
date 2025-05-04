@@ -46,6 +46,7 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
+
 ion-content {
     // overwrite inline styles
     --offset-bottom: auto !important;
@@ -516,3 +517,6 @@ ion-content {
     color: var(--ion-color-txt);
     font-family: Inter-SemiBold;
   }
+
+
+  

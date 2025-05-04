@@ -1,0 +1,25 @@
+.modal-filtros {
+    --width: 50vw;
+    --height: 100vh;
+    --border-radius: 0;
+    --box-shadow: none;
+    --background: #fff;
+    --backdrop-opacity: 0.3;
+    right: 0;
+    position: absolute !important;
+  }
+  
+  .modal-filtros .modal-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 100vh;
+    display: block;
+  }
+  
+  ion-datetime {
+    font-size: 12px;
+    --padding: 4px;
+    height: 30px;
+  }

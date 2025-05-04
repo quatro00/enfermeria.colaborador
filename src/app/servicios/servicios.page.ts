@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { IonicModule } from '@ionic/angular';
-import { cash, cashOutline, cashSharp, eyeOutline, searchOutline } from 'ionicons/icons';
+import { cash, cashOutline, cashSharp, eyeOutline, funnelOutline, searchOutline } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
+import { OfertarModalComponent } from '../components/ofertar-modal/ofertar-modal.component';
+import { FiltrosComponent } from '../components/filtros/filtros.component';
 
 @Component({
   selector: 'app-servicios',
@@ -22,11 +24,38 @@ export class ServiciosPage implements OnInit {
   constructor(
     private modalCtrl: ModalController
   ) {
-    addIcons({ cashOutline, cash, cashSharp, searchOutline });
+    addIcons({ cashOutline, cash, cashSharp, searchOutline, funnelOutline });
    }
 
    cerrar() {
     this.modalCtrl.dismiss();
+  }
+
+  async abrirFiltros() {
+    const modal = await this.modalCtrl.create({
+      component: FiltrosComponent,
+      cssClass: 'modal-filtros',
+      showBackdrop: true,
+      backdropDismiss: true
+    });
+  
+    await modal.present();
+  }
+
+  async abrirModalOferta() {
+    const modal = await this.modalCtrl.create({
+      component: OfertarModalComponent,
+      cssClass: 'custom-modal',
+      backdropDismiss: true // Permite cerrar tocando fuera del modal
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      console.log('Oferta enviada:', data);
+      // Aquí puedes hacer POST al backend o lo que necesites
+    }
   }
 
   enviarOferta() {
@@ -35,7 +64,7 @@ export class ServiciosPage implements OnInit {
       comentario: this.comentario
     });
   }
-  
+
   ngOnInit(): void {
     this.checkAppMode();
   }
