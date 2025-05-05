@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Mis Pagos</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content class="ion-padding">
 
@@ -19,51 +14,59 @@
     </ion-segment-button>
   </ion-segment>
 
-  <!-- Pago 1: Pendiente -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Servicio #1534</ion-card-title>
-      <ion-chip color="warning" slot="end">Pendiente</ion-chip>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Fecha del servicio:</strong> 3 mayo 2025</p>
-      <p><strong>Turno:</strong> 7:00am – 3:00pm</p>
-      <p><strong>Paciente:</strong> José Martínez</p>
-      <p><strong>Total a pagar:</strong> $800 MXN</p>
-      <ion-button expand="block" fill="outline" color="medium" size="small" disabled>En revisión</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    
+    <div class="box1" style="margin-top: 25px;">
+      <div class="list1">
+        <ion-text class="subtitle">Pago #34</ion-text>
+        <div class="tag" style="background-color: #7FC09C10; width: 81px;">
+          <ion-text class="s14" style="color: #7FC09C;">Pagado</ion-text>
+        </div>
+      </div>
 
-  <!-- Pago 2: Pagado -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Servicio #1527</ion-card-title>
-      <ion-chip color="success" slot="end">Pagado</ion-chip>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Fecha del servicio:</strong> 1 mayo 2025</p>
-      <p><strong>Turno:</strong> 3:00pm – 11:00pm</p>
-      <p><strong>Paciente:</strong> María López</p>
-      <p><strong>Monto pagado:</strong> $950 MXN</p>
-      <p><strong>Fecha de pago:</strong> 2 mayo 2025</p>
-      <ion-button expand="block" fill="outline" color="primary" size="small">Ver comprobante</ion-button>
-    </ion-card-content>
-  </ion-card>
+      <div class="lines" style="border-color: #6F767E20;"></div>
 
-  <!-- Pago 3: Pagado -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Servicio #1519</ion-card-title>
-      <ion-chip color="success" slot="end">Pagado</ion-chip>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Fecha del servicio:</strong> 28 abril 2025</p>
-      <p><strong>Turno:</strong> 11:00pm – 7:00am</p>
-      <p><strong>Paciente:</strong> Luis Torres</p>
-      <p><strong>Monto pagado:</strong> $1,100 MXN</p>
-      <p><strong>Fecha de pago:</strong> 30 abril 2025</p>
-      <ion-button expand="block" fill="outline" color="primary" size="small">Ver comprobante</ion-button>
-    </ion-card-content>
-  </ion-card>
+      <div style="padding: 15px;">
+        <div style="display: flex; margin-bottom: 5px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">💰 Total:</ion-text>
+          <ion-text class="m15">$1,200.00</ion-text>
+        </div>
 
+        <div style="display: flex; margin-bottom: 5px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">📅 Fecha:</ion-text>
+          <ion-text class="m15">04 mayo 2025</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 5px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">📅 Servicios:</ion-text>
+          <ion-text class="m15">1, 2, 3, 4</ion-text>
+        </div>
+      </div>
+
+      <div class="list" style="margin-top: 15px; padding: 0 15px;">
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <div  class="icon1" style="height: 40px; width: 130px; border-radius: 12px; background-color: var(--ion-color-primary); display: flex; align-items: center; justify-content: center;">
+            <ion-icon name="image-outline" style="font-size: 20px; color: #fff;"></ion-icon>
+            <ion-text class="s14" style="color: #fff; margin-left: 6px;">Comprobante</ion-text>
+          </div>
+
+          <div class="icon1" style="height: 40px; width: 81px; border-radius: 12px; background-color: var(--ion-color-secondary); display: flex; align-items: center; justify-content: center;">
+            <ion-icon name="document-text-outline" style="font-size: 20px; color: #fff;"></ion-icon>
+            <ion-text class="s14" style="color: #fff; margin-left: 6px;">Detalle</ion-text>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button >
+      <ion-icon name="filter-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+<ion-footer class="ion-padding" style="margin-top: 30px;">
+</ion-footer>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { IonicModule } from '@ionic/angular';
-import { cash, cashOutline, cashSharp, eyeOutline, funnelOutline, searchOutline } from 'ionicons/icons';
+import { cash, cashOutline, cashSharp, eyeOutline, filterOutline, funnelOutline, searchOutline } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular';
 import { OfertarModalComponent } from '../components/ofertar-modal/ofertar-modal.component';
 import { FiltrosComponent } from '../components/filtros/filtros.component';
@@ -24,7 +24,7 @@ export class ServiciosPage implements OnInit {
   constructor(
     private modalCtrl: ModalController
   ) {
-    addIcons({ cashOutline, cash, cashSharp, searchOutline, funnelOutline });
+    addIcons({ cashOutline, cash, cashSharp, searchOutline, funnelOutline, filterOutline });
    }
 
    cerrar() {
