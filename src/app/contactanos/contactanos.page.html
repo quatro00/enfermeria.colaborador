@@ -21,29 +21,58 @@
   </div>  
 
   <div class="box1"  style="margin-top: 25px;padding: 1px 16px;">
+
+
+    <form #formulario="ngForm" (ngSubmit)="enviarMensaje()" novalidate>
+  <div class="box1" style="margin-top: 25px;padding: 1px 16px;">
     <div class="ion-text-center" style="margin-top: 25px;">
       <ion-text class="title" style="color: var(--ion-color-p1);">Envianos un mensaje</ion-text>
     </div>
     <br>
-    <ion-text class="s15" style="margin-top: 25px;">Nombre</ion-text>
-    <div style="margin-top: 25px;" class="input" style="background-color: var(--ion-color-fb);margin-top: 10px;margin-bottom: 20px;">
-      <ion-input style="flex: 1;--placeholder-color:  var(--ion-color-txt);"/>
-    </div>
-    <ion-text class="s15" style="margin-top: 25px;">Correo electronico</ion-text>
-    <div style="margin-top: 25px;" class="input" style="background-color: var(--ion-color-fb);margin-top: 10px;margin-bottom: 20px;">
-      <ion-input style="flex: 1;--placeholder-color:  var(--ion-color-txt);"/>
-    </div>
-    <ion-text class="s15" style="margin-top: 25px;">Telefono</ion-text>
-    <div style="margin-top: 25px;" class="input" style="background-color: var(--ion-color-fb);margin-top: 10px;margin-bottom: 20px;">
-      <ion-input style="flex: 1;--placeholder-color:  var(--ion-color-txt);"/>
-    </div>
 
-    <ion-text class="s15" style="margin-top: 25px;">Mensaje</ion-text>
-    <div style="margin-top: 25px;" class="input" style="background-color: var(--ion-color-fb);margin-top: 10px;margin-bottom: 20px;">
-      <ion-input  style="flex: 1;--placeholder-color:  var(--ion-color-txt);"/>
+    <!-- Nombre -->
+    <ion-text class="s15">Nombre</ion-text>
+    <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+      <ion-input [(ngModel)]="form.nombre" name="nombre" required #nombre="ngModel" placeholder="Tu nombre" />
     </div>
-    <div class="list" style="margin-top: 30px;justify-content: center;margin-bottom: 10px;">
-      <ion-button routerLink="/emptyup" expand="block" style="width: 60%;">Enviar</ion-button>
+    <ion-text color="danger" *ngIf="nombre.invalid && nombre.touched">Nombre requerido</ion-text>
+    <br *ngIf="nombre.invalid && nombre.touched">
+
+    <!-- Correo -->
+    <ion-text class="s15">Correo electrónico</ion-text>
+    <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+      <ion-input [(ngModel)]="form.correo" name="correo" required email #correo="ngModel" placeholder="Tu correo" type="email" />
     </div>
+    
+    <ion-text color="danger" *ngIf="correo.invalid && correo.touched">Correo válido requerido</ion-text>
+    <br *ngIf="correo.invalid && correo.touched">
+
+    <!-- Teléfono -->
+    <ion-text class="s15">Teléfono</ion-text>
+    <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+      <ion-input [(ngModel)]="form.telefono" name="telefono" required #telefono="ngModel" placeholder="Tu teléfono" type="tel" />
+    </div>
+    <ion-text color="danger" *ngIf="telefono.invalid && telefono.touched">Teléfono requerido</ion-text>
+    <br *ngIf="telefono.invalid && telefono.touched">
+
+    <!-- Mensaje -->
+    <ion-text class="s15">Mensaje</ion-text>
+    <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+      <ion-input [(ngModel)]="form.mensaje" name="mensaje" required #mensaje="ngModel" placeholder="Escribe tu mensaje" />
+    </div>
+    <ion-text color="danger" *ngIf="mensaje.invalid && mensaje.touched">Mensaje requerido</ion-text>
+    <br  *ngIf="mensaje.invalid && mensaje.touched">
+
+    <!-- Botón -->
+    <div class="list" style="margin-top: 30px; justify-content: center; margin-bottom: 10px;">
+      <ion-button expand="block" style="width: 60%;" [disabled]="formulario.invalid" type="submit">
+        Enviar
+      </ion-button>
+    </div>
+  </div>
+</form>
+
+
+
   </div>  
 </ion-content>
