@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonButtons, IonText, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { LoadingController, AlertController  } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,23 @@ export class LoginPage implements OnInit {
 
   darkMode = false;
 
-  constructor(private router: Router) {}
+  form = {
+    correoElectronico: '',
+    password: ''
+  };
+
+  constructor(
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private authService:AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.checkAppMode();
   }
+
+  
 
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
@@ -33,9 +46,55 @@ export class LoginPage implements OnInit {
     document.body.classList.toggle('dark', this.darkMode);
   }
 
-  login() {
+  async showErrorAlert(mensaje:any) {
+    const alert = await this.alertCtrl.create({
+      //header: '¡Éxito!',
+      message: mensaje,
+      buttons: ['Aceptar'],
+      cssClass: 'danger'
+    });
+    await alert.present();
+  }
+
+  async login() {
+
+    const loader = await this.loadingCtrl.create({
+      message: 'Procesando...',
+      spinner: 'crescent',
+      backdropDismiss: false
+    });
+
+    await loader.present();
+
+    let login = {
+      Username: this.form.correoElectronico,
+      Password: this.form.password,
+      remember: true
+    };
+
+    this.authService.Login(login)
+    .subscribe({
+      next: (response) => {
+        this.form = {
+          correoElectronico: '',
+          password: ''
+        }
+        loader.dismiss();
+        localStorage.setItem('Authorization',`Bearer ${response.token}`);
+        this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
+        //this.showSuccessAlert();
+      },
+      complete: () => {
+        loader.dismiss();
+      },
+      error: (err) => {
+        this.showErrorAlert(err.error.errors.error[0]);
+        loader.dismiss();
+      }
+    })
+
     // Aquí colocas tu lógica de autenticación, y si es válida:
-    this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
+    //this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
   }
 
 }

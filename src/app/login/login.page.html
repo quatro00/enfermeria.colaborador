@@ -11,32 +11,45 @@
     <ion-text class="title" style="color: var(--ion-color-p1);">Enfermeria MC</ion-text>
   </div>
 
-  <div style="margin-top: 30px;">
-    <ion-text class="s32" >Ingresar</ion-text>
-  </div>
-
-  <div style="margin-top: 20px;">
-    <ion-text class="s15" >Correo electronico</ion-text>
-  </div>
-  <div class="input" style="margin-top: 7px" >
-    <ion-input type="text" placeholder="Correo electronico" style="margin-left: 5px;flex:1"></ion-input>
-  </div>
-  <div style="margin-top: 20px;">
-    <ion-text class="s15" >Password</ion-text>
-  </div>
-  <div class="input" style="margin-top: 7px" >
-    <ion-input type="text" placeholder="Password" style="margin-left: 5px;flex:1"></ion-input>
-  </div>
+  <form #formulario="ngForm" (ngSubmit)="login()" novalidate>
+    <div class="box1" style="margin-top: 25px;padding: 1px 16px;">
+      <div class="ion-text-center" style="margin-top: 25px;">
+        <ion-text class="title" style="color: var(--ion-color-p1);">Ingresar</ion-text>
+      </div>
+      <br>
   
-  <ion-button expand="block" style="margin-top: 20px;margin-bottom: 20px;" (click)="login()">Ingresar</ion-button>
+      <!-- Nombre -->
+      <ion-text class="s15">Correo electronico</ion-text>
+      <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+        <ion-input [(ngModel)]="form.correoElectronico" name="correoElectronico" required #correoElectronico="ngModel" placeholder="Correo electronico" />
+      </div>
+      <ion-text color="danger" *ngIf="correoElectronico.invalid && correoElectronico.touched">Correo electronico requerido</ion-text>
+      <br *ngIf="correoElectronico.invalid && correoElectronico.touched">
   
-  <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
-    <ion-text class="s13" style="color: var(--ion-color-txt);">Quieres unirte a nuestro equipo?  </ion-text>
-    <ion-text routerLink="/contactanos" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Contactanos</ion-text>
-  </div>
-
-  <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
-    <ion-text routerLink="/olvide-contrasena" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Olvide mi contraseña</ion-text>
-  </div>
+  
+      <!-- Teléfono -->
+      <ion-text class="s15">Password</ion-text>
+      <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
+        <ion-input [(ngModel)]="form.password" name="password" required #password="ngModel" placeholder="Password" type="password" />
+      </div>
+      <ion-text color="danger" *ngIf="password.invalid && password.touched">Password requerido</ion-text>
+      <br *ngIf="password.invalid && password.touched">
+  
+      <!-- Botón -->
+      <div class="list" style="margin-top: 30px; justify-content: center; margin-bottom: 10px;">
+        <ion-button expand="block" style="width: 100%;" [disabled]="formulario.invalid" type="submit">
+          Ingresar
+        </ion-button>
+      </div>
+      <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
+        <ion-text class="s13" style="color: var(--ion-color-txt);">Quieres unirte a nuestro equipo?  </ion-text>
+        <ion-text routerLink="/contactanos" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Contactanos</ion-text>
+      </div>
+    
+      <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
+        <ion-text routerLink="/olvide-contrasena" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Olvide mi contraseña</ion-text>
+      </div>
+    </div>
+  </form>
 
 </ion-content>

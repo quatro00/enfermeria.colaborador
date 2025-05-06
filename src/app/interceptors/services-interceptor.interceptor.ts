@@ -1,68 +1,53 @@
-import { Injectable } from '@angular/core';
 import {
   HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
+  HttpHandlerFn,
+  HttpEvent
 } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Observable, catchError, delay, finalize, map, throwError } from 'rxjs';
 
-//import { AuthService } from '../services/auth.service';
+export function servicesInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  
+  const token = localStorage.getItem('Authorization');
 
-@Injectable()
-export class ServicesInterceptorInterceptor implements HttpInterceptor {
+  console.log('interceptor!!!', token);
 
-  constructor(
-    //private authService: AuthService,
-    //private msg: NzMessageService
-  ) { }
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler):
-    Observable<HttpEvent<unknown>> {
-      const token = localStorage.getItem('Authorization');
-      const headers:any = {};
-
-      if (token) {
-        headers['Authorization'] = token;
-      }
-
-      //console.log(this.cookieService.get('Authorization'));
-      localStorage.getItem('Authorization');
-    const authRequest = request.clone({
-      setHeaders: headers
-    });
-
-    return next.handle(authRequest).pipe(
-      delay(0),
-      map((event: HttpEvent<any>) => {
-        return event;
-      }),
-      catchError((error: any) => {
-        //console.log('error--->>>', error);
-        var tipoError: number = error.status;
-        var errorMsg: string = '';
-        switch (tipoError) {
-          case 401:
-            errorMsg = 'Sesion terminada favor de iniciar sesion.';
-            //this.authService.logout();
-            break;
-          case 400:
-            errorMsg = error.error;
-            //this.authService.logout();
-            break;
-          default:
-            errorMsg = 'Ocurrio un error inesperado';
-            break;
-        }
-
-        console.log(errorMsg);
-        //this.msg.error(errorMsg);
-        return throwError(error);
-      }),
-      finalize(() => {
-        //console.log('terminado');
-      }));;
+  const headers: any = {};
+  if (token) {
+    headers['Authorization'] = token;
   }
 
+  const authRequest = req.clone({
+    setHeaders: headers
+  });
 
+  return next(authRequest).pipe(
+    delay(0),
+    map((event: HttpEvent<any>) => event),
+    catchError((error: any) => {
+      let tipoError: number = error.status;
+      let errorMsg: string = '';
+
+      switch (tipoError) {
+        case 401:
+          errorMsg = 'Sesión terminada, favor de iniciar sesión.';
+          break;
+        case 400:
+          errorMsg = error.error;
+          break;
+        default:
+          errorMsg = 'Ocurrió un error inesperado.';
+          break;
+      }
+
+      console.error(errorMsg);
+      return throwError(() => error);
+    }),
+    finalize(() => {
+      // Finalización si deseas algo aquí
+    })
+  );
 }
