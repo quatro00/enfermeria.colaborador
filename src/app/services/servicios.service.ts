@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -11,5 +11,28 @@ export class ServiciosService {
 
   VerServiciosProximos(): Observable<any> {
     return this.http.get<any>(`${environment.apiBaseUrl}/${this.service}/ver-servicios-proximos`);
+  }
+
+  GetServiciosDisponibles(fechaInicio?:any, fechaTermino?:any, estadoId?:any, municipioId?:any): Observable<any> {
+
+    let params = new HttpParams();
+
+    if (fechaInicio) {
+        params = params.set('fechaInicio', fechaInicio);
+      }
+  
+      if (fechaTermino) {
+        params = params.set('FechaFin', fechaTermino);
+      }
+  
+      if (estadoId) {
+        params = params.set('EstadoId', estadoId);
+      }
+  
+      if (municipioId) {
+        params = params.set('MunicipioId', municipioId);
+      }
+
+    return this.http.get<any>(`${environment.apiBaseUrl}/${this.service}/ver-servicios-disponibles`,{params});
   }
 }

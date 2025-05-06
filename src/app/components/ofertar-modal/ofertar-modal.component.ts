@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { IonicModule } from '@ionic/angular';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-ofertar-modal',
@@ -14,12 +15,18 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class OfertarModalComponent  implements OnInit {
+  servicio: any={};
   importe: number = 0;
   comentario: string = '';
 
   ngOnInit() {}
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController,
+    private navParams: NavParams
+  ) {
+    this.servicio = this.navParams.get('servicio');
+    console.log('Servicio recibido:', this.servicio);
+  }
 
   cerrar() {
     this.modalCtrl.dismiss();

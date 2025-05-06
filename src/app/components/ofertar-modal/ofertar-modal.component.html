@@ -15,55 +15,105 @@
       <div style="padding: 15px;">
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">📍 Motivo:</ion-text>
-          <ion-text class="m15">Polanco, CDMX</ion-text>
+          <ion-text class="m15">{{servicio.motivo}}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">📍 Ubicación:</ion-text>
-          <ion-text class="m15">Polanco, CDMX</ion-text>
+          <ion-text class="m15">{{servicio.direccion}}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">🏙️ Ciudad:</ion-text>
-          <ion-text class="m15">Polanco, CDMX</ion-text>
+          <ion-text class="m15">{{servicio.ciudad}}, {{servicio.estado}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">🏙️Lugar:</ion-text>
+          <ion-text class="m15">{{servicio.tipoLugar}}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">📅 Fecha:</ion-text>
-          <ion-text class="m15">04 mayo 2025</ion-text>
+          <ion-text class="m15">{{ servicio.fechaInicio | date:'dd/MM/yyyy HH:mm' }}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
-          <ion-text class="m15" style="width: 110px; font-weight: 500;">⏰ Horario:</ion-text>
-          <ion-text class="m15">08:00 - 20:00</ion-text>
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">📅 Horario:</ion-text>
+          <ion-text class="m15">{{ servicio.fechaTermino | date:'dd/MM/yyyy HH:mm' }}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">⏰ Horas:</ion-text>
+          <ion-text class="m15">{{servicio.horas}}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">💰 Costo:</ion-text>
-          <ion-text class="m15">$1,200.00</ion-text>
+          <ion-text class="m15">{{ servicio.total | currency: 'USD':'symbol':'1.2-2' }}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Servicio:</ion-text>
+          <ion-text class="m15">{{servicio.tipoEnfermera}}</ion-text>
         </div>
 
         <div style="display: flex; margin-bottom: 10px;">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">Comentarios:</ion-text>
-          <ion-text class="m15">$1,200.00</ion-text>
+          <ion-text class="m15">{{servicio.observaciones}}</ion-text>
         </div>
         
 
-        <div style="display: flex; margin-bottom: 10px;">
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.requiereAyudaBasica">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">Ayuda basica:</ion-text>
-          <ion-text class="m15">$1,200.00</ion-text>
+          <ion-text class="m15">{{servicio.requiereAyudaBasicaDesc}}</ion-text>
         </div>
 
-        <div style="display: flex; margin-bottom: 10px;">
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.EnfermedadDiagnosticada">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">Enfermedad:</ion-text>
-          <ion-text class="m15">$1,200.00</ion-text>
+          <ion-text class="m15">{{servicio.EnfermedadDiagnosticadaDesc}}</ion-text>
         </div>
 
-        <div style="display: flex; margin-bottom: 10px;">
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.TomaMedicamento">
           <ion-text class="m15" style="width: 110px; font-weight: 500;">Medicamento:</ion-text>
-          <ion-text class="m15">$1,200.00</ion-text>
+          <ion-text class="m15">{{servicio.TomaMedicamentoDesc}}</ion-text>
         </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.RequiereCuraciones">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Curaciones:</ion-text>
+          <ion-text class="m15">{{servicio.RequiereCuracionesDesc}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.DispositivosMedicos">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Dispositivos:</ion-text>
+          <ion-text class="m15">{{servicio.DispositivosMedicosDesc}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.RequiereMonitoreo">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Monitoreo:</ion-text>
+          <ion-text class="m15">{{servicio.RequiereMonitoreoDesc}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.CuidadosNocturnos">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Cuidado noc:</ion-text>
+          <ion-text class="m15">{{servicio.CuidadosNocturnosDesc}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.RequiereAtencionNeurologica">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">At. neuro:</ion-text>
+          <ion-text class="m15">{{servicio.RequiereAtencionNeurologicaDesc}}</ion-text>
+        </div>
+
+        <div style="display: flex; margin-bottom: 10px;" *ngIf="servicio.RequiereCuidadosCriticos">
+          <ion-text class="m15" style="width: 110px; font-weight: 500;">Cuid. criticos:</ion-text>
+          <ion-text class="m15">{{servicio.RequiereCuidadosCriticosDesc}}</ion-text>
+        </div>
+
       </div>
+
+
+
+
       <div class="lines" style="border-color: #6F767E20;"></div>
      
       <div class="ion-text-center" style="margin-top: 25px;">
