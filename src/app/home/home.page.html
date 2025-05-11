@@ -1,14 +1,23 @@
-<ion-content [fullscreen]="true" class="ion-padding" style="background-color: var(--ion-color-bg); padding-bottom: 80px;">
+<ion-content [fullscreen]="true" class="ion-padding"
+  style="background-color: var(--ion-color-bg); padding-bottom: 80px;">
 
   <!-- Bienvenida -->
-  <div class="box1" style="margin-top: 20px; padding: 16px; text-align: center;">
-    <ion-text class="title" style="color: var(--ion-color-p1); margin-top: 10px;">¡Hola, María Fernanda!</ion-text>
-    <p style="margin-top: 5px; color: var(--ion-color-medium); font-size: 14px;">Bienvenida de nuevo</p>
+ <div class="box1" style="margin-top: 5px;padding: 1px 16px;">
+    <ion-img [src]="darkMode ? '../../../../assets/image/logod.png' : '../../../../assets/image/Logo.png'" 
+             style="height: 65px;width: 100%;margin-top: 40px;"></ion-img>
+
+    <div class="ion-text-center" style="margin-top: 5px;">
+      <ion-text class="title" style="color: var(--ion-color-p1);">Servicios MC.</ion-text>
+    </div>
+
+    <div class="ion-text-center" style="margin-top: 10px;">
+      <p>Bienvenido(a)</p>
+    </div>
   </div>
 
   <!-- Alertas -->
   <div class="box1" style="margin-top: 20px; padding: 16px;">
-    <ion-text class="s15" style="color: var(--ion-color-p1);">Alertas</ion-text>
+    <ion-text class="s15" style="color: var(--ion-color-p1);">Avisos</ion-text>
     <ion-list lines="none" style="margin-top: 10px;">
       <ion-item color="warning">
         <ion-icon name="alert-circle-outline" slot="start"></ion-icon>
@@ -25,41 +34,28 @@
   <div class="box1" style="margin-top: 20px; padding: 16px;">
     <ion-text class="s15" style="color: var(--ion-color-p1);">Próximos servicios</ion-text>
     <ion-list lines="none" style="margin-top: 10px;">
-      <ion-item>
+      <ion-item *ngFor="let item of serviciosProximos">
         <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
         <ion-label>
-          <strong>5 Mayo - 8:00 AM</strong><br>
-          Clínica San José - Turno Matutino
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <strong>6 Mayo - 8:00 PM</strong><br>
-          Hospital Ángeles - Turno Nocturno
+          <strong>#{{item.noGuardia}} {{ item.fechaInicio | date:'dd/MM/yyyy HH:mm' }}</strong><br>
+          {{item.direccion}}
         </ion-label>
       </ion-item>
     </ion-list>
+    <!-- Estado de pagos -->
+
+    <div class="box1" style="margin-top: 20px; padding: 16px;">
+      <ion-text class="s15" style="color: var(--ion-color-p1);">Ingresos</ion-text>
+      <div style="width: 100%; height: 300px;">
+        <canvas #barChart></canvas>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Estado de pagos -->
-  <div class="box1" style="margin-top: 20px; padding: 16px;">
-    <ion-text class="s15" style="color: var(--ion-color-p1);">Pagos recientes</ion-text>
-    <ion-item lines="none">
-      <ion-label><strong>1 al 3 Mayo</strong><br>$3,200 MXN - Depositado</ion-label>
-      <ion-chip color="success" slot="end">
-        <ion-label>Pagado</ion-label>
-      </ion-chip>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label><strong>4 Mayo</strong><br>$1,200 MXN - En proceso</ion-label>
-      <ion-chip color="warning" slot="end">
-        <ion-label>Pendiente</ion-label>
-      </ion-chip>
-    </ion-item>
-  </div>
 
- 
+
+
 
 </ion-content>
 

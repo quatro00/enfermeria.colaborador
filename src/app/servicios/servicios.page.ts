@@ -21,17 +21,17 @@ import { ServiciosService } from '../services/servicios.service';
 })
 export class ServiciosPage implements OnInit {
 
-  fechaDesde: string = new Date().toISOString();
-  fechaHasta: string = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
   darkMode = false;
   importe: number = 0;
   comentario: string = '';
+  segmentValue: string = 'porcotizar';
 
   estados:any[]=[];
   municipios:any[]=[];
 
   serviciosDisponibles:any[]=[];
+  items: any[] = [];
 
   constructor(
     private modalCtrl: ModalController,
@@ -84,10 +84,11 @@ export class ServiciosPage implements OnInit {
         const { estadoId, municipioId, fechaDesde, fechaHasta } = result.data;
         console.log('Filtros:', result.data);
 
-        this.serviciosService.GetServiciosDisponibles(fechaDesde, fechaHasta, estadoId, municipioId)
+        this.serviciosService.GetServiciosDisponibles(estadoId, municipioId)
         .subscribe({
           next: (response) => {
             this.serviciosDisponibles = response;
+            this.items = response;
           },
           complete: () => {
             //this.btnLoading = false;
@@ -118,6 +119,21 @@ export class ServiciosPage implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data) {
       console.log('Oferta enviada:', data);
+      if(data == true){
+        this.serviciosService.GetServiciosDisponibles(null, null)
+        .subscribe({
+          next: (response) => {
+            this.serviciosDisponibles = response;
+            this.items = response;
+          },
+          complete: () => {
+            //this.btnLoading = false;
+          },
+          error: () => {
+            //this.btnLoading = false;
+          }
+        })
+      }
       // Aquí puedes hacer POST al backend o lo que necesites
     }
   }
@@ -129,12 +145,19 @@ export class ServiciosPage implements OnInit {
     });
   }
 
+  get filteredItems() {
+    return this.items.filter(item => 
+      this.segmentValue === 'cotizados' ? item.cotizado : !item.cotizado
+    );
+  }
+
   ngOnInit(): void {
     this.checkAppMode();
-    this.serviciosService.GetServiciosDisponibles(this.fechaDesde, this.fechaHasta, null, null)
+    this.serviciosService.GetServiciosDisponibles(null, null)
         .subscribe({
           next: (response) => {
             this.serviciosDisponibles = response;
+            this.items = response;
           },
           complete: () => {
             //this.btnLoading = false;

@@ -13,18 +13,10 @@ export class ServiciosService {
     return this.http.get<any>(`${environment.apiBaseUrl}/${this.service}/ver-servicios-proximos`);
   }
 
-  GetServiciosDisponibles(fechaInicio?:any, fechaTermino?:any, estadoId?:any, municipioId?:any): Observable<any> {
+  GetServiciosDisponibles(estadoId?:any, municipioId?:any): Observable<any> {
 
     let params = new HttpParams();
 
-    if (fechaInicio) {
-        params = params.set('fechaInicio', fechaInicio);
-      }
-  
-      if (fechaTermino) {
-        params = params.set('FechaFin', fechaTermino);
-      }
-  
       if (estadoId) {
         params = params.set('EstadoId', estadoId);
       }
@@ -34,5 +26,13 @@ export class ServiciosService {
       }
 
     return this.http.get<any>(`${environment.apiBaseUrl}/${this.service}/ver-servicios-disponibles`,{params});
+  }
+
+  EnviarCotizacion(request:any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/${this.service}/enviar-cotizacion`, request);
+  }
+
+  EliminarCotizacion(request:any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/${this.service}/eliminar-cotizacion`, request);
   }
 }

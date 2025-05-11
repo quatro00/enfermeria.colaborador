@@ -1,0 +1,59 @@
+
+
+<ion-content class="ion-padding">
+
+  <div class="box1" style="margin-top: 20px;">
+    <div class="list1">
+      <ion-text class="subtitle">Pago #{{ pago.folio }}</ion-text>
+      <div class="tag" style="background-color: #7FC09C10; width: 81px;">
+        <ion-text class="s14" style="color: #7FC09C;" *ngIf="pago.estatus == 'Pagado'">{{pago.estatus}}</ion-text>
+        <ion-text class="s14" style="color: #FFA94D;" *ngIf="pago.estatus == 'Por pagar'">{{pago.estatus}}</ion-text>
+      </div>
+    </div>
+
+    <div class="lines" style="border-color: #6F767E20;"></div>
+
+    <div style="padding: 15px;">
+      <div style="display: flex; margin-bottom: 5px;">
+        <ion-text class="m15" style="width: 110px; font-weight: 500;">💰 Total:</ion-text>
+        <ion-text class="m15">{{ pago.total | currency }}</ion-text>
+      </div>
+
+      <div style="display: flex; margin-bottom: 5px;">
+        <ion-text class="m15" style="width: 110px; font-weight: 500;">💰 Motivo:</ion-text>
+        <ion-text class="m15">{{ pago.motivo }}</ion-text>
+      </div>
+
+      <div style="display: flex; margin-bottom: 5px;">
+        <ion-text class="m15" style="width: 110px; font-weight: 500;">📅 Fecha:</ion-text>
+        <ion-text class="m15">{{ pago.fecha | date:'dd MMMM yyyy' }}</ion-text>
+      </div>
+    </div>
+
+    <div class="lines" style="border-color: #6F767E20;"></div>
+
+    <div style="padding: 15px;">
+      <ion-text class="subtitle" style="font-weight: 600;">Servicios</ion-text>
+
+      <div style="margin-top: 10px;">
+        <div style="display: flex; font-weight: 500; color: #6F767E; border-bottom: 1px solid #E0E0E0; padding-bottom: 6px;">
+          <div style="flex: 1;">Guardia</div>
+          <div style="flex: 1;">Horas</div>
+          <div style="flex: 2;">Fecha</div>
+          <div style="flex: 1; text-align: right;">Total</div>
+        </div>
+
+        <div *ngFor="let d of pago.detalle" style="display: flex; padding: 8px 0; border-bottom: 1px solid #F0F0F0;">
+          <div style="flex: 1;">{{ d.noGuardia }}</div>
+          <div style="flex: 1;">{{ d.cantidadHoras }}</div>
+          <div style="flex: 2;">{{ d.fecha | date:'dd MMM yyyy' }}</div>
+          <div style="flex: 1; text-align: right;">{{ d.total | currency }}</div>
+        </div>
+      </div>
+    </div>
+    <ion-button expand="block" fill="clear" (click)="dismiss()" color="danger">
+        Salir
+      </ion-button>
+  </div>
+
+</ion-content>

@@ -19,9 +19,9 @@
     <ion-text class="s15" >Correo electronico</ion-text>
   </div>
   <div class="input" style="margin-top: 7px" >
-    <ion-input type="text" placeholder="Correo electronico" style="margin-left: 5px;flex:1"></ion-input>
+    <ion-input type="text" placeholder="Correo electronico" style="margin-left: 5px;flex:1" [(ngModel)]="correoElectronico"></ion-input>
   </div>
-  <ion-button routerLink="/tabs" expand="block" style="margin-top: 20px;margin-bottom: 20px;">Enviar</ion-button>
+  <ion-button (click)="enviarCorreo()" expand="block" style="margin-top: 20px;margin-bottom: 20px;">Enviar</ion-button>
   
   <div class="list" style="justify-content: center; display: flex;margin-top: 15px;margin-bottom: 20px;">
     <ion-text (click)="goBack()" class="b12" style="color: var(--ion-color-primary);margin-left: 5px;">Regresar</ion-text>

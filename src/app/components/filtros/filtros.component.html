@@ -31,37 +31,6 @@
           </ion-select-option>
         </ion-select>
       </div>
-      <ion-text class="s15" style="margin-top: 25px;">Periodo desde</ion-text>
-
-      <br><br>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-<ion-modal [keepContentsMounted]="true">
-  <ng-template>
-    <ion-datetime
-      id="datetime"
-      presentation="date"
-      [value]="fechaDesde"
-    ></ion-datetime>
-  </ng-template>
-</ion-modal>
-
-<br />
-<ion-text class="s15" style="margin-top: 25px;">Hasta</ion-text>
-
-<ion-datetime-button datetime="datetimeHasta"></ion-datetime-button>
-<ion-modal [keepContentsMounted]="true">
-  <ng-template>
-    <ion-datetime
-      id="datetimeHasta"
-      display-format="DD/MMM/YYYY"
-      presentation="date"
-      picker-format="DD/MM/YYYY"
-      [cancelText]="'Cancelar'"
-      [doneText]="'Seleccionar'"
-      [value]="fechaHasta"
-    ></ion-datetime>
-  </ng-template>
-</ion-modal>
 
 
 

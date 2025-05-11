@@ -21,8 +21,6 @@ export class FiltrosComponent implements OnInit {
 
   estados: any[] = [];
   municipios: any[] = [];
-  fechaDesde: string = new Date().toISOString();
-  fechaHasta: string = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
   estadoSeleccionado: string | null = null;
   municipioSeleccionado: string | null = null;
@@ -67,9 +65,7 @@ export class FiltrosComponent implements OnInit {
   aplicarFiltros() {
     this.modalCtrl.dismiss({
       estadoId: this.estadoSeleccionado,
-      municipioId: this.municipioSeleccionado,
-      fechaDesde: this.fechaDesde,
-      fechaHasta: this.fechaHasta
+      municipioId: this.municipioSeleccionado
     });
   }
   

@@ -71,4 +71,15 @@ export class AuthService {
     return this.http.get<any>(`${environment.apiBaseUrl}/WeatherForecast`);
   }
   
+   GetPerfil(): Observable<any> {
+
+    
+    return this.http.get<any>(`${environment.apiBaseUrl}/auth/ver-perfil`);
+  }
+
+  RecuperarContrasena(request:any):Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/auth/recuperar-contrasena`,{
+      Email: request
+    });
+  }
 }
