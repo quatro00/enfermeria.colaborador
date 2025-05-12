@@ -7,7 +7,7 @@ import { triangle, ellipse, square, home, briefcase, helpCircle, card, person } 
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonImg, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [ IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
@@ -24,7 +24,7 @@ export class TabsPage {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

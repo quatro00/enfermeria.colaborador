@@ -41,7 +41,7 @@ export class DetallePagoModalComponent  implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.pago);
+   // console.log(this.pago);
   }
 
 }

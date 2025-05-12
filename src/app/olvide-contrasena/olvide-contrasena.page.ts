@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonButtons, IonText, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { NavController } from '@ionic/angular';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './olvide-contrasena.page.html',
   styleUrls: ['./olvide-contrasena.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonInput, IonText, IonButtons, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButton, IonInput, IonText, IonImg, IonContent, CommonModule, FormsModule]
 })
 export class OlvideContrasenaPage implements OnInit {
 
@@ -62,7 +62,7 @@ export class OlvideContrasenaPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

@@ -78,6 +78,7 @@ export class AuthService {
   }
 
   RecuperarContrasena(request:any):Observable<LoginResponse>{
+    //(`${environment.apiBaseUrl}/auth/recuperar-contrasena`);
     return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/auth/recuperar-contrasena`,{
       Email: request
     });

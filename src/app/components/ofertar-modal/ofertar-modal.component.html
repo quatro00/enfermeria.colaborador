@@ -138,13 +138,13 @@
           <!-- Comentarios (ya no requerido) -->
           <ion-text class="s15">Comentario</ion-text>
           <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
-            <ion-input [(ngModel)]="form.comentarios" name="comentarios" placeholder="Comentarios" />
+            <ion-input [value]="form.comentarios" name="comentarios" placeholder="Comentarios" />
           </div>
       
           <!-- Oferta (solo lectura, valor asignado desde el componente) -->
           <ion-text class="s15">Oferta</ion-text>
           <div class="input" style="background-color: var(--ion-color-fb); margin: 10px 0 5px;">
-            <ion-input [(ngModel)]="form.oferta" name="oferta" [readonly]="true" type="number" />
+            <ion-input [value]="form.oferta" name="oferta" [readonly]="true" type="number" />
           </div>
       
           <!-- Botón -->

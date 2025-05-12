@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { IonicModule } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular/standalone';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { environment } from 'src/environments/environment';

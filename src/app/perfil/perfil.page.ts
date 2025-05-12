@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonFooter, IonText, IonNote, IonContent, IonInput } from '@ionic/angular/standalone';
 import { cash, cashOutline, cashSharp, eyeOutline, filterOutline, funnelOutline, searchOutline } from 'ionicons/icons';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { OfertarModalComponent } from '../components/ofertar-modal/ofertar-modal.component';
 import { FiltrosComponent } from '../components/filtros/filtros.component';
 import { forkJoin } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/standalone';
 import { CatalogosService } from '../services/catalogos.service';
 import { ServiciosService } from '../services/servicios.service';
 import { AuthService } from '../services/auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonInput, IonContent, IonNote, IonText, IonFooter, IonButton, CommonModule, FormsModule]
 })
 export class PerfilPage implements OnInit {
 
@@ -75,7 +75,7 @@ export class PerfilPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

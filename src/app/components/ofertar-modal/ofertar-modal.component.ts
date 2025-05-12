@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { IonHeader, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { ModalController, IonInput } from '@ionic/angular/standalone';
+import { IonHeader, IonItem, IonLabel, IonButton, IonText, IonContent, NavParams } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonicModule } from '@ionic/angular';
-import { NavParams } from '@ionic/angular';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular/standalone';
 import { ServiciosService } from 'src/app/services/servicios.service';
 
 @Component({
@@ -14,7 +12,7 @@ import { ServiciosService } from 'src/app/services/servicios.service';
   templateUrl: './ofertar-modal.component.html',
   styleUrls: ['./ofertar-modal.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonInput, IonContent, IonText, IonButton, CommonModule, FormsModule]
 })
 export class OfertarModalComponent  implements OnInit {
   servicio: any={};
@@ -36,7 +34,7 @@ export class OfertarModalComponent  implements OnInit {
     private serviciosService: ServiciosService,
   ) {
     this.servicio = this.navParams.get('servicio');
-    console.log('Servicio recibido:', this.servicio);
+    //console.log('Servicio recibido:', this.servicio);
     this.form.oferta = this.servicio.total;
   }
 

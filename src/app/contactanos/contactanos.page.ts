@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonText, IonButton, IonCard, IonCardHeader, IonCardTitle, IonItem, IonCardContent, IonLabel, IonInput, IonTextarea, IonImg } from '@ionic/angular/standalone';
-import { NavController } from '@ionic/angular';
-import { LoadingController, AlertController  } from '@ionic/angular';
+import { NavController } from '@ionic/angular/standalone';
+import { LoadingController, AlertController  } from '@ionic/angular/standalone';
 import { PublicService } from '../services/public.service';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -13,7 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
   templateUrl: './contactanos.page.html',
   styleUrls: ['./contactanos.page.scss'],
   standalone: true,
-  imports: [IonImg, IonTextarea, IonInput, IonLabel, IonCardContent, IonItem, IonCardTitle, IonCardHeader, IonCard, IonButton, IonText, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
+  imports: [IonImg,  IonInput,       IonButton, IonText, IonContent,    CommonModule, FormsModule],
   
 })
 export class ContactanosPage implements OnInit {
@@ -45,7 +45,7 @@ export class ContactanosPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

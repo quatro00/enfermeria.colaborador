@@ -2,13 +2,12 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonIcon, IonItem, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid, IonCol, IonRow, IonCardContent, IonFooter, IonButton, IonText, IonChip, IonAvatar } from '@ionic/angular/standalone';
+import { IonContent,IonInput, IonHeader, IonTitle, IonToolbar, IonLabel, IonIcon, IonItem, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid, IonCol, IonRow, IonCardContent, IonFooter, IonButton, IonText, IonChip, IonAvatar, IonImg } from '@ionic/angular/standalone';
 import { calendarOutline, checkmarkDoneOutline, notificationsOutline, timeOutline } from 'ionicons/icons';
 import { ServiciosService } from '../services/servicios.service';
 import { Chart, registerables } from 'chart.js';
 import { PagosService } from '../services/pagos.service';
 import { AuthService } from '../services/auth.service';
-import { IonicModule } from '@ionic/angular';
 
 Chart.register(...registerables);
 
@@ -18,7 +17,7 @@ Chart.register(...registerables);
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonImg, CommonModule, FormsModule, IonInput, IonContent, IonList, IonItem, IonIcon, IonLabel, IonText, IonFooter]
 })
 export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('barChart') barChart!: ElementRef<HTMLCanvasElement>;
@@ -50,11 +49,11 @@ export class HomePage implements OnInit, AfterViewInit {
 
   
   ngOnInit() {
-    console.log('usuario',this.authService.getUser());
+    //console.log('usuario',this.authService.getUser());
     this.pagosService.GetGraficaPagos()
     .subscribe({
       next: (response) => {
-       console.log('grafica', response);
+       //console.log('grafica', response);
         const canvas = this.barChart.nativeElement;
         
        this.chart = new Chart(canvas, {
@@ -93,7 +92,7 @@ export class HomePage implements OnInit, AfterViewInit {
         
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
       }
     })
     
@@ -106,7 +105,7 @@ export class HomePage implements OnInit, AfterViewInit {
         
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
       }
     })
   }

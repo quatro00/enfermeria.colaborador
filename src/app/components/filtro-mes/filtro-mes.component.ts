@@ -7,7 +7,7 @@ import { addIcons } from 'ionicons';
 import { IonicModule } from '@ionic/angular';
 
 import { forkJoin } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/standalone';
 import { CatalogosService } from '../../services/catalogos.service';
 
 @Component({
@@ -24,7 +24,12 @@ periodoSeleccionado: string = ''; // Formato esperado: 'yyyy-MM'
     private catalogosService: CatalogosService,
     private loadingCtrl: LoadingController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const hoy = new Date();
+  const mes = (hoy.getMonth() + 1).toString().padStart(2, '0'); // Mes en formato 2 dígitos
+  const anio = hoy.getFullYear();
+  this.periodoSeleccionado = `${anio}-${mes}`; // formato YYYY-MM
+  }
 
   aplicarFiltros() {
     this.modalCtrl.dismiss({

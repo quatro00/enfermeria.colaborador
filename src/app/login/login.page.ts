@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonButtons, IonText, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { LoadingController, AlertController  } from '@ionic/angular';
+import { LoadingController, AlertController  } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -12,15 +12,15 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonButton, IonInput, IonText, IonButtons, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule]
+  imports: [ IonButton, IonInput, IonText,  IonImg, IonContent,    CommonModule, FormsModule, RouterModule]
 })
 export class LoginPage implements OnInit {
 
   darkMode = false;
 
   form = {
-    correoElectronico: '',
-    password: ''
+    correoElectronico: 'josecarlosgarciadiaz@gmail.com',
+    password: 'suikoden'
   };
 
   constructor(
@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);
@@ -64,7 +64,9 @@ export class LoginPage implements OnInit {
       backdropDismiss: false
     });
 
-    await loader.present();
+    loader.present();
+
+
 
     let login = {
       Username: this.form.correoElectronico,
@@ -92,7 +94,7 @@ export class LoginPage implements OnInit {
         loader.dismiss();
       }
     })
-
+    
     // Aquí colocas tu lógica de autenticación, y si es válida:
     //this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
   }

@@ -13,7 +13,7 @@ export function servicesInterceptor(
   
   const token = localStorage.getItem('Authorization');
 
-  console.log('interceptor!!!', token);
+  //console.log('interceptor!!!', token);
 
   const headers: any = {};
   if (token) {

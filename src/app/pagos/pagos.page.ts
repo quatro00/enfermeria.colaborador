@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonicModule } from '@ionic/angular';
+import { IonSegment, IonSegmentButton, IonContent, IonLabel, IonText, IonIcon, IonFabButton, IonFab, IonFooter } from '@ionic/angular/standalone';
 import { cash, cashOutline, cashSharp, documentTextOutline, eyeOutline, fileTrayOutline, filterOutline, funnelOutline, imageOutline, searchOutline } from 'ionicons/icons';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { OfertarModalComponent } from '../components/ofertar-modal/ofertar-modal.component';
 import { FiltrosComponent } from '../components/filtros/filtros.component';
 import { forkJoin } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/standalone';
 import { CatalogosService } from '../services/catalogos.service';
 import { ServiciosService } from '../services/servicios.service';
 import { PagosService } from '../services/pagos.service';
@@ -21,7 +21,7 @@ import { VerPagoModalComponent } from '../components/ver-pago-modal/ver-pago-mod
   templateUrl: './pagos.page.html',
   styleUrls: ['./pagos.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonFooter, IonFab, IonFabButton, IonIcon, IonText, IonLabel, IonContent, IonSegmentButton, IonSegment, CommonModule, FormsModule]
 })
 export class PagosPage implements OnInit {
 
@@ -42,7 +42,7 @@ export class PagosPage implements OnInit {
   }
 
   filtrarLista() {
-    console.log('checamos');
+    //console.log('checamos');
     if (this.filtroEstatus === 'todos') {
       this.listaFiltrada = this.listaOriginal;
     } else {
@@ -73,7 +73,7 @@ export class PagosPage implements OnInit {
     modal.onDidDismiss().then((result) => {
       if (result.data.periodo != '') {
         const { periodo } = result.data;
-        console.log('Filtros:', result.data);
+        //console.log('Filtros:', result.data);
         this.pagosService.GetPagos(result.data.periodo)
       .subscribe({
         next: (response) => {
@@ -126,7 +126,7 @@ export class PagosPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

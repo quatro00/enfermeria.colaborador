@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonicModule } from '@ionic/angular';
 import { cash, cashOutline, cashSharp, eyeOutline, filterOutline, funnelOutline, searchOutline } from 'ionicons/icons';
-import { ModalController } from '@ionic/angular';
 import { OfertarModalComponent } from '../components/ofertar-modal/ofertar-modal.component';
 import { FiltrosComponent } from '../components/filtros/filtros.component';
 import { forkJoin } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, IonFabButton, IonFab, IonIcon, IonContent, IonFooter, IonButton, IonText, IonLabel, IonSegmentButton , ModalController, IonToolbar, IonHeader, IonSegment } from '@ionic/angular/standalone';
 import { CatalogosService } from '../services/catalogos.service';
 import { ServiciosService } from '../services/servicios.service';
 
@@ -17,10 +15,12 @@ import { ServiciosService } from '../services/servicios.service';
   templateUrl: './servicios.page.html',
   styleUrls: ['./servicios.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonSegment, IonHeader, IonToolbar, IonSegmentButton, IonLabel, IonText, IonButton, IonFooter, IonContent, IonIcon, IonFab, IonFabButton, CommonModule, FormsModule]
 })
 export class ServiciosPage implements OnInit {
 
+  periodo = (new Date()).toISOString().slice(0, 7);
+  filtroEstatus: string = 'todos';
 
   darkMode = false;
   importe: number = 0;
@@ -32,6 +32,8 @@ export class ServiciosPage implements OnInit {
 
   serviciosDisponibles:any[]=[];
   items: any[] = [];
+  listaOriginal: any[] = []; // Aquí tienes todos los elementos
+  listaFiltrada: any[] = []; // Aquí se guarda la lista filtrada
 
   constructor(
     private modalCtrl: ModalController,
@@ -71,6 +73,17 @@ export class ServiciosPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  filtrarLista() {
+    //console.log('checamos');
+    if (this.filtroEstatus === 'todos') {
+      this.listaFiltrada = this.listaOriginal;
+    } else {
+      this.listaFiltrada = this.listaOriginal.filter(
+        item => item.estatus === this.filtroEstatus
+      );
+    }
+  }
+
   async abrirFiltros() {
     const modal = await this.modalCtrl.create({
       component: FiltrosComponent,
@@ -82,7 +95,7 @@ export class ServiciosPage implements OnInit {
     modal.onDidDismiss().then((result) => {
       if (result.data) {
         const { estadoId, municipioId, fechaDesde, fechaHasta } = result.data;
-        console.log('Filtros:', result.data);
+        //console.log('Filtros:', result.data);
 
         this.serviciosService.GetServiciosDisponibles(estadoId, municipioId)
         .subscribe({
@@ -118,7 +131,7 @@ export class ServiciosPage implements OnInit {
 
     const { data } = await modal.onDidDismiss();
     if (data) {
-      console.log('Oferta enviada:', data);
+      //console.log('Oferta enviada:', data);
       if(data == true){
         this.serviciosService.GetServiciosDisponibles(null, null)
         .subscribe({
@@ -171,7 +184,7 @@ export class ServiciosPage implements OnInit {
   async checkAppMode() {
     const checkIsDarkMode = localStorage.getItem('darkModeActivated');
     // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
-    console.log(checkIsDarkMode);
+    //console.log(checkIsDarkMode);
     checkIsDarkMode == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);

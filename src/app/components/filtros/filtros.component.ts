@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { IonHeader, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonHeader, IonItem, IonLabel, ModalController, IonContent, IonButton, IonText, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { IonicModule } from '@ionic/angular';
 
 import { forkJoin } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/standalone';
 import { CatalogosService } from '../../services/catalogos.service';
 
 @Component({
@@ -15,7 +13,7 @@ import { CatalogosService } from '../../services/catalogos.service';
   templateUrl: './filtros.component.html',
   styleUrls: ['./filtros.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonText, IonButton, IonContent, CommonModule, FormsModule, IonSelect, IonSelectOption]
 })
 export class FiltrosComponent implements OnInit {
 
